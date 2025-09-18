@@ -148,10 +148,6 @@ export const AuthProvider = ({ children }) => {
         setInvitations(data);
     };
 
-    useEffect(() => {
-        fetchInvitations();
-    }, []);
-
     const handleInvite = async (payload) => {
         try {
             await API.post("/invitations/invite", payload);
@@ -189,7 +185,7 @@ export const AuthProvider = ({ children }) => {
             user, token, loading, login, logout, authLoading,
             getNotes, createNote, updateNote, deleteNote, getNoteById,
             getAllTenants, upgradeTenant,
-            invitations, handleInvite, handleResend, handleCancel,
+            invitations, handleInvite, handleResend, handleCancel, fetchInvitations,
         }}>
 
             {children}

@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import Layout from '../components/Layout';
 // Import icons from lucide-react
 import { Send, Mail, RefreshCw, XCircle, Loader2 } from 'lucide-react';
 
 export default function InvitePages() {
-    const { invitations, handleInvite, handleResend, handleCancel } = useAuth();
+    const { invitations, handleInvite, handleResend, handleCancel, fetchInvitations } = useAuth();
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const [loadingAction, setLoadingAction] = useState({ id: null, type: null });
+
+    useEffect(() => {
+        fetchInvitations();
+    }, []);
 
 
     const handleSubmit = async (e) => {
